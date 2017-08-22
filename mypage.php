@@ -3,7 +3,7 @@
  * My page
  *
  * @license https://opensource.org/licenses/mit-license.html MIT License
- * @author Masayoshi Kojima <masayoshi.kojima@gmail.com>
+ * @author 
  */
 
 session_start();
@@ -183,7 +183,7 @@ const root = this,
 
 $(function() {
 <?php
-if (check_permission('user_update')) {
+if (check_permission('manage_users')) {
 ?>
   $('#chg-locale-form [name=locale]').val('<?= $_SESSION['locale'] ?>');
 

@@ -74,5 +74,5 @@ INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES ('sysadmin', '
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES ('sysadmin', 'change_locale');
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES ('sysadmin', 'manage_users');
 INSERT INTO `role_permission` (`role_id`, `permission_id`) VALUES ('user', 'change_password');
-INSERT INTO `users` (`user_id`, `password`, `firstname`, `lastname`, `email`, `locale`, `time_zone`, `remind_pw_flg`, `del_flg`, `login_failure_date`, `login_failure_count`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES ('admin', '$2y$10$jc75knO1rIV/O.AfVIWF0.zyAmUIQyO/2LWMvN.XhrhLqvBuHCPO6', 'Administrator', 'System', NULL, 'ja', 'JST', '0', '0', NULL, '0', 'admin', CURRENT_TIMESTAMP, 'admin', CURRENT_TIMESTAMP);
-INSERT INTO `user_role` (`user_id`, `role_id`, `create_user`, `create_date`, `update_user`, `update_date`) VALUES ('admin', 'sysadmin', 'admin', CURRENT_TIMESTAMP, 'admin', CURRENT_TIMESTAMP);
+INSERT INTO `users` (`user_id`, `password`, `firstname`, `lastname`, `email`, `locale`, `create_user`, `update_user`) VALUES ('admin', '$2y$10$jc75knO1rIV/O.AfVIWF0.zyAmUIQyO/2LWMvN.XhrhLqvBuHCPO6', 'Administrator', 'System', NULL, 'ja', 'admin', 'admin');
+INSERT INTO `user_role` (`user_id`, `role_id`, `create_user`, `update_user`) VALUES ('admin', 'sysadmin', 'admin', 'admin');

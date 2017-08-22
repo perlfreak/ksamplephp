@@ -3,7 +3,7 @@
  * Footer
  *
  * @license https://opensource.org/licenses/mit-license.html MIT License
- * @author Masayoshi Kojima <masayoshi.kojima@gmail.com>
+ * @author 
  */
 ?>
 <div class="row">

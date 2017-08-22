@@ -3,7 +3,7 @@
  * Header
  *
  * @license https://opensource.org/licenses/mit-license.html MIT License
- * @author Masayoshi Kojima <masayoshi.kojima@gmail.com>
+ * @author 
  */
 
 /* ロケール別の表示文字列を取得
