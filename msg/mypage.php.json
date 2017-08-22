@@ -1,0 +1,20 @@
+{
+  "ja" : {
+    "00010" : "トークンが一致しません。",
+    "00020" : "データベースへの接続に失敗しました。<br />しばらく経ってから再度実行してください。",
+    "00030" : "ロケールを変更しました。",
+    "00040" : "KSamplePHP",
+    "00050" : "ユーザ管理",
+    "00060" : "ロケール変更",
+    "00070" : "ロケールを選択してください。"
+  },
+  "en" : {
+    "00010" : "Tokens do not match.",
+    "00020" : "Failed to connect to the database. <br /> Please do it again after a while.",
+    "00030" : "The locale has been changed.",
+    "00040" : "KSamplePHP",
+    "00050" : "User Management",
+    "00060" : "Change locale",
+    "00070" : "Please select a locale."
+  }
+}
