@@ -807,7 +807,7 @@ foreach ($locales as $value) {
 <?php
   /* ------- </When there is a search result> ------- */
 }
-elseif (!empty(filter_input(INPUT_POST, 'search_user'))) {
+elseif (filter_input(INPUT_POST, 'case') == 'search_user') {
 ?>
 
 <div class="text-sm-center">
