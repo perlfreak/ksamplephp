@@ -389,6 +389,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
       	  $stmt->execute();
         	$stmt->close();
         	$mysqli->close();
+
         	$msg = $msg_ary['00150'];
           log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00150']);
         }

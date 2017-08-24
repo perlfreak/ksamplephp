@@ -12,7 +12,7 @@ $locale = 'ja';
 if (!empty($_SESSION['locale'])) {
   $locale = $_SESSION['locale'];
 }
-$header_msg_ary = json_decode(file_get_contents('./msg/header.php.json'), true)[$locale];
+$header_msg_ary = json_decode(file_get_contents('./msg/header.php.' . $locale . '.json'), true);
 ?>
 <div class="row">
 <div class="col-sm-12">

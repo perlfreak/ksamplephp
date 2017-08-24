@@ -64,8 +64,8 @@ function check_session() {
  * If there is no argument locale and there is no session information, the locale will be the value of the GET parameter locale if it exists.
  * 引数のロケールがなく、セッション情報がなく、GETパラメータ locale もない場合、ja をロケールとします。
  * If there is no argument locale, no session information, and no GET parameter locale, then ja is taken as the locale.
- * この関数を使用するファイルと同一階層にある msg ディレクトリ下の そのファイル名.json の中身を取得して連想配列にし、キーがロケールに一致する値（表示文字列用の連想配列）を返します。
- * Get the contents of the file name .json under the msg directory located at the same hierarchical level as the file using this function, make it into an associative array, and return a value (an associative array for the display string) whose key matches the locale.
+ * この関数を使用するファイルと同一階層にある msg ディレクトリ下の そのファイル名.ロケール.json の中身を取得して連想配列にして返します。
+ * Get the contents of the {file name}.{locale}.json under the msg directory located at the same hierarchical level as the file using this function, make it into an associative array, and return.
  *
  * @return 表示文字列の連想配列
  *         Associative array of display string
@@ -82,7 +82,7 @@ function get_msg($locale) {
       $locale = 'ja';
     }
   }
-  return json_decode(file_get_contents('./msg/' . basename(filter_input(INPUT_SERVER, 'PHP_SELF')) . '.json'), true)[$locale];
+  return json_decode(file_get_contents('./msg/' . basename(filter_input(INPUT_SERVER, 'PHP_SELF')) . '.' . $locale . '.json'), true);
 }
 
 /**

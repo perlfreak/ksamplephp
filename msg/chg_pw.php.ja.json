@@ -1,5 +1,4 @@
 {
-  "ja" : {
     "00010" : "トークンが一致しません。",
     "00020" : "データベースへの接続に失敗しました。<br />しばらく経ってから再度実行してください。",
     "00030" : "現在のパスワードが違います。",
@@ -17,24 +16,4 @@
     "00150" : "新しいパスワードが入力されていません。",
     "00160" : "新しいパスワードが現在のパスワードと同じです。",
     "00170" : "新しいパスワード（確認）が新しいパスワードと違います。"
-  },
-  "en" : {
-    "00010" : "Tokens do not match.",
-    "00020" : "Failed to connect to the database.<br />Please try again after a while.",
-    "00030" : "The current password is incorrect.",
-    "00040" : "Please enter at least 8 digits of new password mixed with alphanumeric characters.",
-    "00050" : "Password changed.",
-    "00060" : "Change Password",
-    "00070" : "Change Password",
-    "00080" : "Please enter the current password, new password, new password (confirmation), and click 'Change' button.",
-    "00090" : "Current Password",
-    "00100" : "New Password",
-    "00110" : "New Password (confirmation)",
-    "00120" : "Reset",
-    "00130" : "Change",
-    "00140" : "The current password has not been entered.",
-    "00150" : "New password is not entered.",
-    "00160" : "The new password is the same as the current password.",
-    "00170" : "The new password (confirmation) is different from the new password."
-  }
 }
