@@ -58,10 +58,10 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         /*** ログイン処理
              Login processing ***/
 
-        if (!empty(filter_input(INPUT_POST, 'userid'))
+        if (!empty(filter_input(INPUT_POST, 'user_id'))
             and !empty(filter_input(INPUT_POST, 'password'))) {
           // Check id, password
-          $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'userid'));
+          $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
           $password = $mysqli->real_escape_string(filter_input(INPUT_POST, 'password'));
           $remid_pw_flg = 0;
         
@@ -77,7 +77,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         
         	while ($row = $result->fetch_array()) {
         	  $got_user_id = $row['user_id'];
-        	  $got_password =  $row['password'];
+        	  $got_password = $row['password'];
             $locale = $row['locale'];
             $lastname = $row['lastname'];
             $firstname = $row['firstname'];
@@ -118,7 +118,8 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         
             /* パスワードを間違えた場合
                Incorrect password */
-            if ($got_user_id and !password_verify($password, $got_password)) {
+            if ($got_user_id
+                and !password_verify($password, $got_password)) {
               $login_failure_count++;
               $stmt = $mysqli->prepare("
                 UPDATE users
@@ -182,9 +183,9 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         /*** パスワードリマインダー処理
              Password reminder processing ***/
 
-        if (!empty(filter_input(INPUT_POST, 'userid'))
+        if (!empty(filter_input(INPUT_POST, 'user_id'))
             and !empty(filter_input(INPUT_POST, 'email'))) {
-          $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'userid'));
+          $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
           $email = $mysqli->real_escape_string(filter_input(INPUT_POST, 'email'));
         
           if (!check_format('email', $email)) {
@@ -339,9 +340,9 @@ else {
 <div class="col-sm-12">
 <form id="logon-form" method="POST">
 <div class="form-group row">
-<label for="userid" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
+<label for="user_id" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
 <div class="col-sm-3 mr-sm-auto">
-<input type="text" id="userid" name="userid" maxlength="128" class="form-control" required />
+<input type="text" id="user_id" name="user_id" maxlength="128" class="form-control" required />
 </div>
 </div>
 <div class="form-group row">
@@ -387,9 +388,9 @@ else {
 <br />
 <form id="passwd-reminder-form" method="POST">
 <div class="form-group row">
-<label for="userid" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
+<label for="user_id" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
 <div class="col-sm-4 mr-sm-auto">
-<input type="text" id="userid" name="userid" maxlength="128" class="form-control" required />
+<input type="text" id="user_id" name="user_id" maxlength="128" class="form-control" required />
 </div>
 </div>
 <div class="form-group row">
@@ -447,7 +448,7 @@ const getCookie = function(cookieName){
 };
 
 $(function() {
-  $('#userid').focus();
+  $('#user_id').focus();
 
   $('#submit-btn').on('click', function() {
     setCookie('check_cookie', true);
@@ -471,7 +472,7 @@ $(function() {
   });
 
   $('#passwd-reminder-submit-btn').on('click', function() {
-    if (!$('#passwd-reminder-form [name=userid]')[0].checkValidity()) {
+    if (!$('#passwd-reminder-form [name=user_id]')[0].checkValidity()) {
       alert('<?= $msg_ary['00220'] ?>');
       return false;
     }
