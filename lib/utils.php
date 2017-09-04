@@ -18,12 +18,12 @@
  * データベースに接続したら、mysqliインスタンスを返します。
  * After connecting to the database, return mysqli instance.
  *
- * @param string DB名
- *               DB name
+ * @param DB名
+ *        DB name
  * @return mysqliインスタンス
  *         mysqli instanse
  */
-function connect_db($dbname) {
+function connect_db(string $dbname) {
   $host = 'localhost';
   $username = 'dbuser';
   $password = 'p0o9i8u7';
@@ -70,7 +70,7 @@ function check_session() {
  * @return 表示文字列の連想配列
  *         Associative array of display string
  */
-function get_msg($locale) {
+function get_msg(string $locale): array {
   if ($locale == "") {
     if (!empty($_SESSION['locale'])) {
       $locale = $_SESSION['locale'];
@@ -92,11 +92,10 @@ function get_msg($locale) {
  * セッション情報のキーが permissions である配列の要素に引数であるパーミッションIDが含まれるかチェックし、true または false を返します。
  * It checks whether the element of the array whose session information key is permissions contains the permission ID as an argument and returns true or false.
  *
- * @param string パーミッションID
- *               permission id
- * @return boolean
+ * @param パーミッションID
+ *        permission id
  */
-function check_permission($permission_id) {
+function check_permission(string $permission_id): bool {
   if (in_array($permission_id, $_SESSION['permissions'])) {
     return true;
   }
@@ -127,10 +126,10 @@ function check_permission($permission_id) {
  * log_debug デバッグ用
  *           for debug
  *
- * @param string エラーメッセージ
- *               error message
+ * @param エラーメッセージ
+ *        error message
  */
-function log_info($msg) {
+function log_info(string $msg) {
   if (!empty($_SESSION['user_id'])) {
     error_log('[INFO] ' . $_SESSION['dbname'] . ' ' . $_SESSION['user_id'] . ' ' . $msg);
   }
@@ -180,12 +179,12 @@ function log_debug($msg) {
  * password: アルファベットおよび数字。数字のみ、アルファベットのみはNG。半角8文字以上64文字以下。
  *           Alphabets and numbers. Only numbers, only alphabets are NG. 8 to 64 characters.
  *
- * @param string キー
- *               key
- * @return string 正規表現文字列
- *                regular expression string
+ * @param キー
+ *        key
+ * @return 正規表現文字列
+ *         regular expression string
  */
-function get_regexp($key) {
+function get_regexp(string $key): string {
   if ($key == 'user_id') {
     return '[a-zA-Z]\w{3,127}';
   }
@@ -205,13 +204,12 @@ function get_regexp($key) {
  * password:
  * email:
  *
- * @param string キー
- *               key
- * @param string チェック対象文字列
- *               Character string to be checked
- * @return boolean
+ * @param キー
+ *        key
+ * @param チェック対象文字列
+ *        Character string to be checked
  */
-function check_format($key, $value) {
+function check_format(string $key, string $value): bool {
   if ($key == 'user_id') {
     $regexp = get_regexp($key);
     if (preg_match('/\A' . $regexp . '\z/', $value)) {
@@ -242,15 +240,15 @@ function check_format($key, $value) {
  * 1行メッセージ用HTMLを取得する。
  * Get the HTML for one line message.
  *
- * @param string タイトルタグ
- *               title tag
- * @param string ページタイトル
- *               page title
- * @param string メッセージ
- *               message
- * @return string HTML
+ * @param タイトルタグ
+ *        title tag
+ * @param ページタイトル
+ *        page title
+ * @param メッセージ
+ *        message
+ * @return HTML
  */
-function get_one_msg_html($title_tag, $page_title, $msg) {
+function get_one_msg_html(string $title_tag, string $page_title, string $msg): string {
   $html  = <<<EOT
 <!DOCTYPE html>
 <html>

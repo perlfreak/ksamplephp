@@ -342,7 +342,7 @@ else {
 <div class="form-group row">
 <label for="user_id" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
 <div class="col-sm-3 mr-sm-auto">
-<input type="text" id="user_id" name="user_id" maxlength="128" class="form-control" required />
+<input type="text" id="user_id" name="user_id" maxlength="128" class="form-control" required autofocus />
 </div>
 </div>
 <div class="form-group row">
@@ -378,8 +378,8 @@ else {
 <div class="modal-dialog modal-lg" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <h4 class="modal-title" id="myModalLabel"></h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 <div class="modal-body">
 <div class="text-sm-center">
@@ -419,7 +419,7 @@ else {
 
 <!-- javascript -->
 <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js" integrity="sha256-jpW4gXAhFvqGDD5B7366rIPD7PDbAmqq4CO0ZnHbdM4=" crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script>
 (function() {
@@ -448,8 +448,6 @@ const getCookie = function(cookieName){
 };
 
 $(function() {
-  $('#user_id').focus();
-
   $('#submit-btn').on('click', function() {
     setCookie('check_cookie', true);
     const val = getCookie('check_cookie');

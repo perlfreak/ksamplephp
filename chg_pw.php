@@ -194,7 +194,7 @@ else {
 <div class="form-group row">
 <label for="password" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00090'] ?></label>
 <div class="col-sm-4 mr-sm-auto">
-<input type="password" id="password" name="password" maxlength="64" autocomplete="off" class="form-control" required />
+<input type="password" id="password" name="password" maxlength="64" autocomplete="off" class="form-control" required autofocus />
 </div>
 </div>
 <div class="form-group row">
@@ -232,7 +232,7 @@ include_once 'footer.php';
 </div>
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js" integrity="sha256-jpW4gXAhFvqGDD5B7366rIPD7PDbAmqq4CO0ZnHbdM4=" crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script>
 (function() {

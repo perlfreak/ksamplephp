@@ -132,21 +132,21 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $errors[] = $msg_ary['00080'];
             log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00080']);
           }
-        
+
           /* メールアドレス形式チェック
              Check email format. */
           if (!check_format('email', $email)) {
             $errors[] = $msg_ary['00090'];
             log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00090']);
           }
-        
+
           if (count($errors) > 0) {
            	$mysqli->close();
           }
-        
+
           if (count($errors) == 0) {
             $password = password_hash($password, PASSWORD_DEFAULT);
-        
+
             $stmt = $mysqli->prepare("
               INSERT INTO users
               (user_id, password, firstname, lastname, email, locale, create_user, update_user)
@@ -159,7 +159,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               VALUES (?, ?, '" . $_SESSION['user_id'] . "', '" . $_SESSION['user_id'] . "')
             ");
             $stmt2->bind_param('ss', $user_id, $role_id);
-        
+
             $mysqli->autocommit(FALSE);
             $stmt->execute();
             $stmt2->execute();
@@ -496,8 +496,8 @@ else {
 <div class="modal-dialog modal-lg" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <h4 class="modal-title" id="myModalLabel"><?= $msg_ary['00190'] ?></h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 <div class="modal-body">
 
@@ -726,8 +726,8 @@ if (count($users) > 0) {
 <div class="modal-dialog modal-lg" role="document">
 <div class="modal-content">
 <div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 <h4 class="modal-title" id="myModalLabel2"><?= $msg_ary['00360'] ?></h4>
+<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 </div>
 <div class="modal-body">
 
@@ -831,7 +831,7 @@ include_once 'footer.php';
 </div>
 
 <script src="//code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js" integrity="sha384-b/U6ypiBEHpOf/4+1nzFpr53nxSS+GLCkfwBdFNTxtclqqenISfwAzpKaMNFNmj4" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.5/umd/popper.min.js" integrity="sha256-jpW4gXAhFvqGDD5B7366rIPD7PDbAmqq4CO0ZnHbdM4=" crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js" integrity="sha384-h0AbiXch4ZDo7tp9hKZ4TsHbi047NrKGLO3SEJAg45jXxnGIfYzk4Si90RDIqNm1" crossorigin="anonymous"></script>
 <script>
 (function() {
