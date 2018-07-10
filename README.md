@@ -25,8 +25,8 @@ MariaDB 10.0.29
 Redis 3.0.6  
 Postfix 3.1.0  
   
-jQuery 3.2.1  
-Bootstrap 4.0.0b  
+jQuery 3.3.1  
+Bootstrap 4.1.1
 
 ## Install
 
