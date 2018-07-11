@@ -505,42 +505,42 @@ else {
 
 <div class="form-group row">
 <label for="user_id" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00200'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="user_id" maxlength="128" class="form-control" required />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="password" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00210'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="password" name="password" maxlength="64" autocomplete="off" class="form-control" required />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="lastname" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00220'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="lastname" maxlength="64" class="form-control" required />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="firstname" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00230'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="firstname" maxlength="64" class="form-control" required />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="email" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00240'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="email" name="email" maxlength="256" class="form-control" required />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="locale" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00250'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <select name="locale" class="form-control">
 
 <?php
@@ -555,7 +555,7 @@ foreach ($locales as $value) {
 
 <div class="form-group row">
 <label for="role_id" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00260'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <select name="role_id" class="form-control" required>
 
 <?php
@@ -596,35 +596,35 @@ foreach ($roles as $value) {
 
 <div class="form-group row">
 <label for="user_id" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00200'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="user_id" maxlength="128" class="form-control" value="<?= $search_key_user_id ?>" />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="email" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00240'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="email" maxlength="256" class="form-control" value="<?= $search_key_email ?>" />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="lastname" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00220'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="lastname" maxlength="64" class="form-control" value="<?= $search_key_lastname ?>" />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="firstname" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00230'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="firstname" maxlength="64" class="form-control" value="<?= $search_key_firstname ?>" />
 </div>
 </div>
 
 <div class="form-group row">
 <label for="locale" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00250'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<div class="col-sm-5 mr-sm-auto">
 <select name="locale" class="form-control">
 <option value=""></option>
 
