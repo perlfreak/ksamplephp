@@ -343,13 +343,13 @@ else {
 <form id="logon-form" method="POST">
 <div class="form-group row">
 <label for="user_id" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
-<div class="col-sm-3 mr-sm-auto">
+<div class="col-sm-4 mr-sm-auto">
 <input type="text" name="user_id" maxlength="128" class="form-control" required autofocus />
 </div>
 </div>
 <div class="form-group row">
 <label for="password" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00140'] ?></label>
-<div class="col-sm-3 mr-sm-auto">
+<div class="col-sm-4 mr-sm-auto">
 <input type="password" id="password" name="password" maxlength="64" autocomplete="off" class="form-control" required />
 </div>
 </div>
@@ -390,14 +390,14 @@ else {
 <br />
 <form id="passwd-reminder-form" method="POST">
 <div class="form-group row">
-<label for="user_id" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<label for="user_id" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00130'] ?></label>
+<div class="col-sm-5 mr-sm-auto">
 <input type="text" name="user_id" maxlength="128" class="form-control" required />
 </div>
 </div>
 <div class="form-group row">
-<label for="email" class="col-sm-2 ml-sm-auto col-form-label"><?= $msg_ary['00190'] ?></label>
-<div class="col-sm-4 mr-sm-auto">
+<label for="email" class="col-sm-3 ml-sm-auto col-form-label"><?= $msg_ary['00190'] ?></label>
+<div class="col-sm-5 mr-sm-auto">
 <input type="email" id="email" name="email" maxlength="64" class="form-control" required />
 </div>
 </div>

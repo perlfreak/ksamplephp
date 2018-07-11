@@ -22,6 +22,6 @@ session_destroy();
 
 log_info($dbname . ' ' . $user_id . ' Logout');
 
-header("Location: index.php?locale={$locale}");
+header("Location: /" . $dbname . "/index.php?locale={$locale}");
 exit;
 ?>
