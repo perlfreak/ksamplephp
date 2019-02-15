@@ -5,7 +5,7 @@
  * Perform password reminder processing.
  *
  * @license https://opensource.org/licenses/mit-license.html MIT License
- * @author 
+ * @author
  */
 
 // DB name
@@ -66,7 +66,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
           $password = $mysqli->real_escape_string(filter_input(INPUT_POST, 'password'));
           $remid_pw_flg = 0;
-        
+
           $stmt = $mysqli->prepare("
             SELECT user_id, password, locale, lastname, firstname, UNIX_TIMESTAMP(NOW()) - UNIX_TIMESTAMP(login_failure_date) AS last_login_failure_time, login_failure_count, remind_pw_flg
             FROM users
@@ -76,10 +76,10 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $stmt->bind_param('s', $user_id);
           $stmt->execute();
           $result = $stmt->get_result();
-        
-        	while ($row = $result->fetch_array()) {
-        	  $got_user_id = $row['user_id'];
-        	  $got_password = $row['password'];
+
+          while ($row = $result->fetch_array()) {
+            $got_user_id = $row['user_id'];
+            $got_password = $row['password'];
             $locale = $row['locale'];
             $lastname = $row['lastname'];
             $firstname = $row['firstname'];
@@ -87,7 +87,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $login_failure_count = intval($row['login_failure_count']);
             $remind_pw_flg = intval($row['remind_pw_flg']);
           }
-        
+
           /* ログイン失敗回数がある場合
              When there are login failure times */
           if (!empty($login_failure_count)) {
@@ -111,13 +111,13 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               $mysqli->close();
             }
           }
-        
-        	if (count($errors) == 0
+
+          if (count($errors) == 0
               and (!$got_user_id
                    or !password_verify($password, $got_password))) {
             $errors[] = $msg_ary['00040'];
             log_error($dbname . ' ' . $user_id . ' ' . filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00040']);
-        
+
             /* パスワードを間違えた場合
                Incorrect password */
             if ($got_user_id
@@ -131,11 +131,11 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               $stmt->bind_param('is', $login_failure_count, $user_id);
               $stmt->execute();
             }
-        
+
             $stmt->close();
             $mysqli->close();
           }
-        
+
           if (count($errors) == 0) {
             /* 権限情報取得
                Acquire authority information. */
@@ -148,35 +148,35 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $stmt->bind_param('s', $user_id);
             $stmt->execute();
             $result = $stmt->get_result();
-        
+
             $permissions = [];
-        	  while ($row = $result->fetch_array(MYSQLI_NUM)) {
-          		foreach ($row as $r) {
-        	      array_push($permissions, $r);
-        	  	}
+            while ($row = $result->fetch_array(MYSQLI_NUM)) {
+              foreach ($row as $r) {
+                array_push($permissions, $r);
+              }
             }
-        
-          	$stmt->close();
-          	$mysqli->close();
-        
-        	/* セッション情報をセットしてマイページに遷移
-        	   Transit to my page by setting session information. */
-          	session_regenerate_id(true);
+
+            $stmt->close();
+            $mysqli->close();
+
+            /* セッション情報をセットしてマイページに遷移
+               Transit to my page by setting session information. */
+            session_regenerate_id(true);
             $_SESSION['user_id'] = $user_id;
             $_SESSION['locale'] = $locale;
-          	$_SESSION['lastname'] = $lastname;
-          	$_SESSION['firstname'] = $firstname;
-          	$_SESSION['permissions'] = $permissions;
-          	$_SESSION['dbname'] = $dbname;
+            $_SESSION['lastname'] = $lastname;
+            $_SESSION['firstname'] = $firstname;
+            $_SESSION['permissions'] = $permissions;
+            $_SESSION['dbname'] = $dbname;
             log_info('Login');
             if ($remind_pw_flg) {
-          	  header("Location: chg_pw.php");
+              header("Location: chg_pw.php");
             }
             else {
-          	  header("Location: mypage.php");
+              header("Location: mypage.php");
             }
-          	exit();
-        	}
+            exit();
+          }
         }
 
         break;  // login
@@ -189,13 +189,13 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             and !empty(filter_input(INPUT_POST, 'email'))) {
           $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
           $email = $mysqli->real_escape_string(filter_input(INPUT_POST, 'email'));
-        
+
           if (!check_format('email', $email)) {
             $errors[] = $msg_ary['00050'];
             log_error($dbname . ' ' . $user_id . ' ' . filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00050']);
             $mysqli->close();
           }
-        
+
           if (count($errors) == 0) {
             $stmt = $mysqli->prepare("
               SELECT user_id, email, locale
@@ -207,13 +207,13 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $stmt->bind_param('ss', $user_id, $email);
             $stmt->execute();
             $result = $stmt->get_result();
-        
-          	while ($row = $result->fetch_array()) {
-          	  $got_user_id = $row['user_id'];
-          	  $got_email =  $row['email'];
+
+            while ($row = $result->fetch_array()) {
+              $got_user_id = $row['user_id'];
+              $got_email =  $row['email'];
               $locale = $row['locale'];
             }
-        
+
             if (!empty($got_user_id)) {
               /* 新パスワード発行
                  Issue a new password. */
@@ -227,19 +227,19 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               ");
               $stmt->bind_param('ss', $enc_pw, $got_user_id);
               $stmt->execute();
-        
+
               /* メール送信
                  Send mail. */
               mb_language("uni");
               mb_internal_encoding("UTF-8");
-        
+
               $to      = $got_email;
               $subject = '[KSamplePHP] ' . $msg_ary['00060'];
               $message = $msg_ary['00070'] . "\n\n" . $password;
               $headers = 'From: system@mydomain' . "\n";
-        
+
               mb_send_mail($to, $subject, $message, $headers);
-        
+
               $msg = $msg_ary['00080'];
               log_info($dbname . ' ' . $got_user_id . ' ' . filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00080']);
             }
@@ -247,9 +247,9 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               $errors[] = $msg_ary['00090'];
               log_error($dbname . ' ' . $user_id . ' ' . filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00090']);
             }
-        
+
             $stmt->close();
-          	$mysqli->close();
+            $mysqli->close();
           }
         }
 
@@ -269,7 +269,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title><?= $msg_ary['00100'] ?></title>
 
-<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body >
 <div class="container">
@@ -421,8 +421,8 @@ else {
 
 <!-- javascript -->
 <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 (function() {
 

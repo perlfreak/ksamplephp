@@ -44,7 +44,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 
         if (!empty(filter_input(INPUT_POST, 'locale'))) {
           $locale = $mysqli->real_escape_string(filter_input(INPUT_POST, 'locale'));
-      
+
           $stmt = $mysqli->prepare("
             UPDATE users
             SET locale = ?, update_user = '" . $_SESSION['user_id'] . "'
@@ -57,11 +57,11 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $mysqli->close();
           
           $_SESSION['locale'] = $locale;
-      
+
           $msg = $msg_ary['00030'];
           log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00030']);
         }
-  
+
         break;  // chg_locale
     }
   }
@@ -78,7 +78,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title><?= $msg_ary['00040'] ?></title>
 
-<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body >
 <div class="container">
@@ -171,8 +171,8 @@ include_once 'footer.php';
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 (function() {
 

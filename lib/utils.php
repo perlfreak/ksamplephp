@@ -108,8 +108,8 @@ function check_permission(string $permission_id): bool {
  * ログを出力する。
  * Output the log.
  *
- * ログファイルは、/etc/php/7.0/apach2/php.ini で設定された /var/log/php/php.log です。
- * The log file is /var/log/php/php.log set in /etc/php/7.0/apache2/php.ini.
+ * ログファイルは、/etc/php/7.2/apach2/php.ini で設定された /var/log/php/php.log です。
+ * The log file is /var/log/php/php.log set in /etc/php/7.2/apache2/php.ini.
  * セッション情報があれば、DB名、ユーザID、引数のエラーメッセージをログに出力します。
  * If there is session information, output DB name, user ID, error message of argument to the log.
  * セッション情報がなければ、引数のエラーメッセージをログに出力します。
@@ -261,7 +261,7 @@ function get_one_msg_html(string $title_tag, string $page_title, string $msg): s
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title>$title_tag</title>
 
-<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body >
 <div class="container">

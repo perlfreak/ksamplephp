@@ -118,14 +118,14 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $email = $mysqli->real_escape_string(filter_input(INPUT_POST, 'email'));
           $locale = $mysqli->real_escape_string(filter_input(INPUT_POST, 'locale'));
           $role_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'role_id'));
-        
+
           /* ユーザID形式チェック
              Check user_id format. */
           if (!check_format('user_id', $user_id)) {
             $errors[] = $msg_ary['00070'];
             log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00070']);
           }
-        
+
           /* パスワード形式チェック
              Check password format. */
           if (!check_format('password', $password)) {
@@ -163,17 +163,17 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $mysqli->autocommit(FALSE);
             $stmt->execute();
             $stmt2->execute();
-        
+
             if ($mysqli->commit()) {
-          	  $msg = $msg_ary['00100'];
+              $msg = $msg_ary['00100'];
               log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00100']);
             }
             else {
-          	  $msg = $msg_ary['00110'];
+              $msg = $msg_ary['00110'];
               log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00110']);
             }
-        
-          	$mysqli->close();
+
+            $mysqli->close();
           }
         }
 
@@ -190,7 +190,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         $lastname = $mysqli->real_escape_string(filter_input(INPUT_POST, 'lastname'));
         $email = $mysqli->real_escape_string(filter_input(INPUT_POST, 'email'));
         $locale = $mysqli->real_escape_string(filter_input(INPUT_POST, 'locale'));
-    
+
         // where
         $where = "
           WHERE del_flg != 1
@@ -215,14 +215,14 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $where = $where . " AND locale = '" . $locale . "'";
           $search_key_locale = filter_input(INPUT_POST, 'locale', FILTER_SANITIZE_FULL_SPECIAL_CHARS);
         }
-    
+
         $page_max_rows = 25;  // 最大表示件数 Maximum display number
         $page = $mysqli->real_escape_string(filter_input(INPUT_POST, 'page'));
         if ($page == "" ) {
           $page = 1;
         }
         $page = max($page, 1);
-    
+
         /* 件数取得
            Number of cases */
         $sql = "
@@ -235,17 +235,17 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           }
           $result->close();
         }
-    
+
         $max_page = ceil($total / $page_max_rows);
         $page = min($page, $max_page);
         $start = ($page - 1) * $page_max_rows;
-    
+
         $sql = "
           SELECT user_id, firstname, lastname, email, locale
           FROM users
         " . $where . "
           LIMIT " . $start . ", " . $page_max_rows;
-    
+
         if ($result = $mysqli->query($sql)) {
           while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
             $result_ary = [
@@ -259,7 +259,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           }
           $result->close();
         }
-      	$mysqli->close();
+        $mysqli->close();
 
         break;  // search_user
 
@@ -269,9 +269,9 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 
         if (!empty(filter_input(INPUT_POST, 'user_id'))) {
           log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' search_user_solo user_id=' . filter_input(INPUT_POST, 'user_id'));
-      
+
           $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
-      
+
           $stmt = $mysqli->prepare("
             SELECT u.user_id, u.firstname, u.lastname, u.email, u.locale, ur.role_id
             FROM users u, user_role ur
@@ -280,7 +280,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
              AND u.del_flg != 1
           ");
           $stmt->bind_param('s', $user_id);
-      	  $stmt->execute();
+          $stmt->execute();
           if ($result = $stmt->get_result()) {
             while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
               $result_ary = [
@@ -294,7 +294,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               array_push($users, $result_ary);
             }
             $result->close();
-      
+
             header('Content-Type: application/json');
             echo json_encode($users, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
           }
@@ -303,7 +303,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           }
           $stmt->close();
           $mysqli->close();
-      
+
           exit();
         }
 
@@ -326,15 +326,15 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
           $email = $mysqli->real_escape_string(htmlspecialchars_decode(filter_input(INPUT_POST, 'email')));
           $locale = $mysqli->real_escape_string(htmlspecialchars_decode(filter_input(INPUT_POST, 'locale')));
           $role_id = $mysqli->real_escape_string(htmlspecialchars_decode(filter_input(INPUT_POST, 'role_id')));
-        
+
           /* メールアドレス形式チェック
              Check email format. */
           if (!check_format('email', $email)) {
             $errors[] = $msg_ary['00090'];
             log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00090']);
-          	$mysqli->close();
+            $mysqli->close();
           }
-        
+
           if (count($errors) == 0) {
             $stmt = $mysqli->prepare("
               UPDATE users
@@ -349,11 +349,11 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               WHERE user_id = ?
             ");
             $stmt2->bind_param('ss', $role_id, $user_id);
-        
+
             $mysqli->autocommit(FALSE);
             $stmt->execute();
             $stmt2->execute();
-        
+
             header("Content-type: text/plain; charset=UTF-8");
             if ($mysqli->commit()) {
               log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00130']);
@@ -363,8 +363,8 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
               log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00140']);
               echo 'NG';
             }
-        
-          	$mysqli->close();
+
+            $mysqli->close();
           }
           exit();
         }
@@ -378,7 +378,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         if (!empty(filter_input(INPUT_POST, 'user_id'))) {
           log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' del_user user_id=' . filter_input(INPUT_POST, 'user_id'));
           $user_id = $mysqli->real_escape_string(filter_input(INPUT_POST, 'user_id'));
-      
+
           $stmt = $mysqli->prepare("
             UPDATE users
             SET del_flg = 1, update_user = '" . $_SESSION['user_id'] . "'
@@ -386,11 +386,11 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
              AND del_flg != 1
           ");
           $stmt->bind_param('s', $user_id);
-      	  $stmt->execute();
-        	$stmt->close();
-        	$mysqli->close();
+          $stmt->execute();
+          $stmt->close();
+          $mysqli->close();
 
-        	$msg = $msg_ary['00150'];
+          $msg = $msg_ary['00150'];
           log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00150']);
         }
 
@@ -410,7 +410,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title><?= $msg_ary['00010'] ?></title>
 
-<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body >
 <div class="container">
@@ -831,8 +831,8 @@ include_once 'footer.php';
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 (function() {
 
@@ -888,7 +888,7 @@ $(function() {
   $('#register-user-modal').on('hidden.bs.modal', function() {
     $('body').removeClass('modal-open');
   });
- 
+
   $('.update-user-btn').on('click', function() {
     const userId = $(this).val();
     $.ajax({

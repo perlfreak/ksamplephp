@@ -46,7 +46,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
         if (!empty(filter_input(INPUT_POST, 'password'))
             and !empty(filter_input(INPUT_POST, 'new_password'))) {
           $password = $mysqli->real_escape_string(filter_input(INPUT_POST, 'password'));
-        
+
           $sql = "
             SELECT password
             FROM users
@@ -54,32 +54,32 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
              AND del_flg != 1
           ";
           if ($result = $mysqli->query($sql)) {
-           while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
-             $got_password = $row['password'];
-        	  }
+            while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+              $got_password = $row['password'];
+            }
             $result->close();
           }
-        
+
           /* 現パスワード存在チェック
              Check current password existence. */
-         if (!password_verify($password, $got_password)) {
+          if (!password_verify($password, $got_password)) {
             $errors[] = $msg_ary['00030'];
             log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00030']);
-          	$mysqli->close();
-        	}
-        
+            $mysqli->close();
+          }
+
           if (count($errors) == 0) {
             $new_password = $mysqli->real_escape_string(filter_input(INPUT_POST, 'new_password'));
-        
+
             /* 新パスワード形式チェック
                Check new password format. */
             if (!check_format('password', $new_password)) {
               $errors[] = $msg_ary['00040'];
               log_error(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00040']);
-            	$mysqli->close();
+              $mysqli->close();
             }
           }
-        
+
           if (count($errors) == 0) {
             /* パスワード、更新ユーザ、更新日時更新
                Update password, update user, update date. */
@@ -92,11 +92,11 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
             $new_password = password_hash($new_password, PASSWORD_DEFAULT);
             $stmt->bind_param('s', $new_password);
             $stmt->execute();
-          	$stmt->close();
-          	$mysqli->close();
-          	$msg = $msg_ary['00050'];
+            $stmt->close();
+            $mysqli->close();
+            $msg = $msg_ary['00050'];
             log_info(filter_input(INPUT_SERVER, 'PHP_SELF') . ' ' . $msg_ary['00050']);
-        	}
+          }
         }
 
         break;  // chg_pw
@@ -115,7 +115,7 @@ if (!empty(filter_input(INPUT_POST, 'case'))) {
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 <title><?= $msg_ary['00060'] ?></title>
 
-<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous" />
+<link rel="stylesheet" href="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
 </head>
 <body >
 <div class="container">
@@ -232,8 +232,8 @@ include_once 'footer.php';
 </div>
 
 <script src="//code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-<script src="//stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="//stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
 (function() {
 
