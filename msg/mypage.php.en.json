@@ -1,0 +1,9 @@
+{
+    "00010" : "Tokens do not match.",
+    "00020" : "Failed to connect to the database. <br /> Please do it again after a while.",
+    "00030" : "The locale has been changed.",
+    "00040" : "KSamplePHP",
+    "00050" : "User Management",
+    "00060" : "Change locale",
+    "00070" : "Please select a locale."
+}
